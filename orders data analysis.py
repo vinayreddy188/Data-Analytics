@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[76]:
 
 
 #import libraries
@@ -11,7 +10,7 @@ import kaggle
 !kaggle datasets download ankitbansal06/retail-orders -f orders.csv
 
 
-# In[77]:
+
 
 
 #extract file from zip file
@@ -21,7 +20,7 @@ zip_ref.extractall() # extract file to dir
 zip_ref.close() # close file
 
 
-# In[145]:
+
 
 
 #read data from the file and handle null values
@@ -30,7 +29,7 @@ df = pd.read_csv('orders.csv',na_values=['Not Available','unknown'])
 df['Ship Mode'].unique()
 
 
-# In[154]:
+
 
 
 #rename columns names ..make them lower case and replace space with underscore
@@ -40,7 +39,7 @@ df['Ship Mode'].unique()
 df.head(5)
 
 
-# In[159]:
+
 
 
 #derive new columns discount , sale price and profit
@@ -50,21 +49,20 @@ df['profit']=df['sale_price']-df['cost_price']
 df
 
 
-# In[162]:
+
 
 
 #convert order date from object data type to datetime
 df['order_date']=pd.to_datetime(df['order_date'],format="%Y-%m-%d")
 
 
-# In[167]:
+
 
 
 #drop cost price list price and discount percent columns
 df.drop(columns=['list_price','cost_price','discount_percent'],inplace=True)
 
 
-# In[169]:
 
 
 #load the data into sql server using replace option
@@ -73,7 +71,7 @@ engine = sal.create_engine('mssql://ANKIT\SQLEXPRESS/master?driver=ODBC+DRIVER+1
 conn=engine.connect()
 
 
-# In[172]:
+
 
 
 #load the data into sql server using append option
